@@ -28,15 +28,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@medi (prefers-color-scheme: dark) {
   :root {
       --primary-100: var(--color-slate-500);
       --primary-200: var(--color-slate-600);
       --primary-300: var(--color-slate-700);
       --primary-400: var(--color-slate-800);
 
-      --btn: var(--color-indigo-700);
-      --btn-hover: var(--color-indigo-800);
+      --btn: var(--color-slate-900);
+      --btn-hover: var(--color-slate-950);
 
       --foreground: var(--color-white);
   }
