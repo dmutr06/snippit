@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { auth, signOut } from "@/auth";
-import Button from "./ui/Button";
 import Link from "next/link";
 import { getUser } from "@/lib/session";
 

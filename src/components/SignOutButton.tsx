@@ -9,7 +9,7 @@ export default function SignOutButton() {
     }
     return (
         <form action={signOutAction}>
-            <Button className="whitespace-nowrap" type="submit" variant="secondary">Sign out</Button>
+            <Button className="whitespace-nowrap" type="submit">Sign out</Button>
         </form>
     );
 }

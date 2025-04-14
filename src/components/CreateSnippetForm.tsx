@@ -11,12 +11,12 @@ export default async function CreateSnippetForm() {
             <textarea
                 name="code"
                 placeholder="Your code here..."
-                className="w-full px-4 py-2 rounded-md bg-gray-200/10 text-white h-48 font-mono"
+                className="w-full px-4 py-2 rounded-md bg-primary-100 h-48 font-mono"
             />
             <textarea
                 name="description"
                 placeholder="Write something about this snippet"
-                className="w-full px-4 py-2 rounded-md bg-gray-200/10 text-white"
+                className="w-full px-4 py-2 rounded-md bg-primary-100"
             />
             <Input
                 name="language"
@@ -26,7 +26,7 @@ export default async function CreateSnippetForm() {
                 name="tags"
                 placeholder="Comma-separated tags"
             />
-            <Button type="submit" variant="secondary" className="block mx-auto w-sm">Create</Button>
+            <Button type="submit" className="block mx-auto w-sm">Create</Button>
         </form>
     );
 }
@@ -36,5 +36,5 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 function Input(props: InputProps) {
-    return <input {...props} className="w-full px-4 py-2 rounded-md bg-gray-200/10 text-white" />
+    return <input {...props} className="w-full px-4 py-2 rounded-md bg-primary-100" />
 }

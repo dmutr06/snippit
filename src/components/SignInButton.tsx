@@ -9,7 +9,7 @@ export default function SignInButton() {
     }
     return (
         <form action={signInAction}>
-            <Button className="whitespace-nowrap" type="submit" variant="secondary">Sign in</Button>
+            <Button className="whitespace-nowrap" type="submit">Sign in</Button>
         </form>
     );
 }
