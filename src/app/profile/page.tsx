@@ -1,16 +1,16 @@
-import { auth } from "@/auth";
 import SignOutButton from "@/components/SignOutButton";
+import { getUser } from "@/lib/session";
 import { notFound } from "next/navigation";
 
 
 export default async function ProfilePage() {
-    const session = await auth();
+    const user = await getUser();
 
-    if (!session?.user) return notFound();
+    if (!user) return notFound();
 
     return (
         <div>
-            <div>Hello, {session.user.name}</div>
+            <div>Hello, {user.name}</div>
             <SignOutButton />
         </div>
     );
