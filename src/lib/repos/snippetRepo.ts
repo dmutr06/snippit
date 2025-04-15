@@ -15,9 +15,10 @@ class SnippetRepo {
 
         const snippetId = res.rows[0].id;
 
+        const uniqueTags = new Set([...tags, language].map(tag => tag.toLowerCase()));
         const tagIds = [];
 
-        for (const tag of tags) {
+        for (const tag of uniqueTags) {
             const tagRes = await db.query("SELECT id FROM tags WHERE name = $1", [tag]);
 
             if (tagRes.rowCount == 0) {
@@ -41,6 +42,7 @@ class SnippetRepo {
     }
 
     async getAllPublic() {
+        console.log("AAA");
         const res = await db.query<Snippet>(`
             SELECT 
                 s.*,

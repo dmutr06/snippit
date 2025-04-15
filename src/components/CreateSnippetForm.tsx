@@ -2,7 +2,7 @@ import { InputHTMLAttributes, Ref } from "react";
 import Button from "./ui/Button";
 import { getUser } from "@/lib/session";
 import snippetRepo from "@/lib/repos/snippetRepo";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export default async function CreateSnippetForm() {
     const createSnippet = async (formData: FormData) => {
@@ -24,18 +24,19 @@ export default async function CreateSnippetForm() {
         }
 
         await snippetRepo.create({ title, code, language, description, tags, authorEmail: user.email, isPrivate: false });
-
-        revalidatePath("/snippets");
+        revalidateTag("snippets");
     };
     return (
         <form action={createSnippet} className="space-y-4">
             <Input 
                 name="title"
                 placeholder="Title"
+                required
             />
             <textarea
                 name="code"
                 placeholder="Your code here..."
+                required
                 className="w-full px-4 py-2 rounded-md bg-primary-100 h-48 font-mono"
             />
             <textarea
@@ -46,6 +47,7 @@ export default async function CreateSnippetForm() {
             <Input
                 name="language"
                 placeholder="language (e.g., javascript)"
+                required
             />
             <Input
                 name="tags"
