@@ -18,7 +18,7 @@ class SnippetRepo {
         const tagIds = [];
 
         for (const tag of tags) {
-            let tagRes = await db.query("SELECT id FROM tags WHERE name = $1", [tag]);
+            const tagRes = await db.query("SELECT id FROM tags WHERE name = $1", [tag]);
 
             if (tagRes.rowCount == 0) {
                 const newTagRes = await db.query("INSERT INTO tags (name) VALUES ($1) RETURNING id", [tag]);
@@ -32,7 +32,7 @@ class SnippetRepo {
             await db.query(
                 "INSERT INTO snippet_tags (snippet_id, tag_id) VALUES ($1, $2)",
                 [snippetId, tagId]
-            )
+            );
         }
 
         await db.query("COMMIT");
@@ -56,4 +56,6 @@ class SnippetRepo {
     }
 }
 
-export default new SnippetRepo();
+const snippetRepo = new SnippetRepo();
+
+export default snippetRepo;

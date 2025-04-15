@@ -1,6 +1,5 @@
 import { getUser } from "@/lib/session";
 import SignInButton from "@/components/SignInButton";
-import Button from "@/components/ui/Button";
 import CreateSnippetForm from "@/components/CreateSnippetForm";
 
 export default async function New() {

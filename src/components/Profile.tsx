@@ -18,5 +18,5 @@ export default async function Profile() {
                 className="object-cover w-full h-full rounded-full"
             />
         </Link>
-    )
+    );
 }

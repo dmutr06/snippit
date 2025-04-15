@@ -6,5 +6,5 @@ CREATE TABLE tags (
 CREATE TABLE item_tags (
     snippet_id INTEGER REFERENCES snippets(id) ON DELETE CASCADE,
     tag_id INTEGER REFERENCES tags(id) ON DELETE CASCADE,
-    PRIMARY KEY (item_id, tag_id)
+    PRIMARY KEY (snippet_id, tag_id)
 );

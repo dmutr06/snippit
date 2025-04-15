@@ -28,7 +28,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@medi (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
       --primary-100: var(--color-slate-500);
       --primary-200: var(--color-slate-600);

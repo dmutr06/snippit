@@ -22,4 +22,6 @@ class UserRepo {
     }
 }
 
-export default new UserRepo();
+const userRepo = new UserRepo();
+
+export default userRepo;
