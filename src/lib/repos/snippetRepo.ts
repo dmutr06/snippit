@@ -1,6 +1,7 @@
 import { Snippet } from "@/types/snippet";
 import db from "../db";
 import { SnippetData } from "@/types/snippet";
+import { getUser } from "../session";
 
 // TODO: make it looks better
 
@@ -42,7 +43,6 @@ class SnippetRepo {
     }
 
     async getAllPublic() {
-        console.log("AAA");
         const res = await db.query<Snippet>(`
             SELECT 
                 s.*,
@@ -50,11 +50,29 @@ class SnippetRepo {
             FROM snippets s
             LEFT JOIN snippet_tags st ON s.id = st.snippet_id
             LEFT JOIN tags t ON st.tag_id = t.id
+            WHERE s.is_private = false
             GROUP BY s.id
             ORDER BY s.id DESC
         `);
 
         return res.rows;
+    }
+
+    async getById(id: number) {
+        const user = await getUser();
+        const res = await db.query<Snippet>(`
+            SELECT 
+                s.*,
+                COALESCE(json_agg(DISTINCT t.name) FILTER (WHERE t.name IS NOT NULL), '[]') AS tags
+            FROM snippets s
+            LEFT JOIN snippet_tags st ON s.id = st.snippet_id
+            LEFT JOIN tags t ON st.tag_id = t.id
+            WHERE s.id = $1 AND (s.is_private = false OR s.author_email = $2)
+            GROUP BY s.id
+            ORDER BY s.id DESC
+        `, [id, user?.email || ""]);
+
+        return res.rows[0] || null;
     }
 }
 
